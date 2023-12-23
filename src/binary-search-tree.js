@@ -50,14 +50,56 @@ class BinarySearchTree {
     }
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    if (!this.rootEl || !data) {
+      return false;
+    }
+    let current = this.rootEl;
+    let result = false;
+    function checkData(element) {
+      if (data === element.data) {
+        result = true;
+        return;
+      }
+      if (data < element.data) {
+        if (element.left) {
+          checkData(element.left);
+        } else return false;
+      } else {
+        if (element.right) {
+          checkData(element.right);
+        } else return false;
+      }
+    }
+
+    checkData(current);
+    return result;
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    if (!this.rootEl || !data) {
+      return null;
+    }
+    let current = this.rootEl;
+    let result = null;
+    function checkData(element) {
+      if (data === element.data) {
+        result = element;
+        return;
+      }
+      if (data < element.data) {
+        if (element.left) {
+          checkData(element.left);
+        } else return false;
+      } else {
+        if (element.right) {
+          checkData(element.right);
+        } else return false;
+      }
+    }
+
+    checkData(current);
+    return result;
   }
 
   remove(/* data */) {
